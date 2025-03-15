@@ -1,0 +1,95 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Obscure</title>
+</head>
+<body>
+    
+    <audio id="explosionSound">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <script src="./script.js"></script>
+</body>
+</html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explosion Button</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            margin-top: 50px;
+        }
+        #button {
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        .explosion {
+            font-size: 50px;
+            color: yellow;
+            animation: explode 1s ease-in-out infinite alternate;
+        }
+        @keyframes explode {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>Click to Double the Number</h1>
+    <button id="button">1</button>
+    <p id="message"></p>
+
+    <audio id="errorSound">
+        <source src="audio/WhatsApp Audio 2025-03-15 at 17.12.20_3f88a8f7.mp3" type="audio/wav">
+    </audio>
+
+    <audio id="explosionSound">
+        <source src="audio/WhatsApp Audio 2025-03-15 at 17.12.20_3f88a8f7.mp3" type="audio/wav">
+    </audio>
+
+    <script>
+        let count = 1;
+        const button = document.getElementById("button");
+        const message = document.getElementById("message");
+        const errorSound = document.getElementById("errorSound");
+        const explosionSound = document.getElementById("explosionSound");
+
+        button.addEventListener("click", () => {
+            count *= 2;
+            button.textContent = count;
+            errorSound.play();
+
+            if (count >= 150) {
+                button.disabled = true;
+                button.textContent = "💥 BOOM!";
+                button.classList.add("explosion");
+                message.innerHTML = "💣 Explosion! Refresh to restart.";
+                explosionSound.play();
+
+            }
+        });
+    </script>
+
+</body>
+</html>
